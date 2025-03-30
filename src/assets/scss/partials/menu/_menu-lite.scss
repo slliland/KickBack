@@ -152,11 +152,12 @@
 
   .main-search {
     .input-group {
+      // Keep your desired overall styling
       border-radius: 20px;
       padding: 0;
-      display: flex;
+      display: flex;         // Ensures all children (input & buttons) line up horizontally
       align-items: center;
-
+  
       .form-control,
       .input-group-text {
         background: transparent;
@@ -164,27 +165,45 @@
         border-radius: 0;
         padding: 0;
       }
-
+  
+      // Close icon is hidden by default
       .search-close {
         display: none;
+        margin-left: 6px;    // Some spacing to separate it from the input
+        // Make sure it stays inline
+        display: flex;       // Overridden in .open below, but let's define it here in case
+        align-items: center;
+        justify-content: center;
       }
-
+  
       .search-btn {
+        // Give it a circular shape + fixed size, so it doesn't stretch
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
         border-radius: 50%;
         padding: 0;
         background: transparent;
         border-color: transparent;
         box-shadow: none;
+        margin-left: 6px;
+  
+        &:active,
+        &:focus,
+        &:hover {
+          outline: none;
+          box-shadow: none;
+        }
       }
-
+  
       .form-control {
         transition: all 0.3s ease-in-out;
         width: 0;
         font-size: 14px;
-      }
-
-      .form-control,
-      .search-btn {
+  
         &:active,
         &:focus,
         &:hover {
@@ -193,46 +212,69 @@
         }
       }
     }
-
+  
     &.open {
       .input-group {
         background: #fff;
         border: 1px solid #f1f1f1;
         box-shadow: 0 6px 12px -5px rgba(65, 76, 78, 0.08);
         padding: 5px 5px 5px 20px;
-
+  
+        // Show the close button only when open
         .search-close {
-          display: flex;
+          display: flex;  // Now it’s visible & inline with the input + search button
         }
 
+        .search-close-btn {
+          background: rgba(0, 0, 0, 0.05);
+          border: none;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          padding: 0;
+          margin-left: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.2s ease-in-out;
+        
+          i {
+            font-size: 18px;
+            color: #333;
+          }
+        
+          &:hover {
+            background: rgba(0, 0, 0, 0.1);
+            i {
+              color: #000;
+            }
+          }
+        
+          &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 123, 200, 0.25);
+          }
+        }
+        
+  
         .search-btn {
-          padding: 5px;
-          margin-left: 5px;
-          background: $primary-color;
-          border-color: $primary-color;
-
+          background: $primary-color;  // or your color
+          border: none;
+          
+          // If you want the search icon in white
           .input-group-text {
             color: #fff;
           }
         }
-
+  
         .form-control {
-          transition: all 0.3s ease-in-out;
-          width: 0;
-        }
-
-        .form-control,
-        .search-btn {
-          &:active,
-          &:focus,
-          &:hover {
-            outline: none;
-            box-shadow: none;
-          }
+          // Expand the input to your desired width when open
+          width: 200px;
         }
       }
     }
   }
+  
 
   .dropdown {
     .dropdown-toggle {

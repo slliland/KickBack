@@ -11,6 +11,11 @@ app.use(express.json());
 
 app.use('/api/championships', require('./routes/championships'));
 
+const euroStatsRoute = require('./routes/euroStats');
+app.use('/api/euro', require('./routes/euroStats')); 
+app.use('/api/search', require('./routes/search'));
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

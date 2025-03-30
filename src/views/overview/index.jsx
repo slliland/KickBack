@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Table, Tabs, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { getDaysLeft } from '../../components/Effect/Utility';
 import axios from 'axios';
+import EuroExtremes from '../../components/Effect/EuroExtremes';
+
 
 import avatar1 from '../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../assets/images/user/avatar-2.jpg';
 import avatar3 from '../../assets/images/user/avatar-3.jpg';
 
 const DashDefault = () => {
-  const [topCountries, setTopCountries] = useState([]);
+  const [newsItems, setNewsItems] = useState([]);
 
+  useEffect(() => {
+    axios.get('http://localhost:5001/api/euro/news')
+      .then(res => setNewsItems(res.data))
+      .catch(err => console.error('Error fetching news:', err));
+  }, []);
+
+  const [topCountries, setTopCountries] = useState([]);
+  const daysLeft = getDaysLeft();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -147,9 +158,10 @@ const DashDefault = () => {
           </Card>
         </Col>
       </Row>
-      <Row>
-        <Col md={6} xl={8}>
-          <Card className="Recent-Users widget-focus-lg">
+      <Row className="align-items-stretch">
+        {/* Left Column */}
+        <Col md={6} xl={8} className="d-flex flex-column">
+          <Card className="Recent-Users widget-focus-lg flex-fill d-flex flex-column" id="top-countries">
             <Card.Header>
               <Card.Title as="h5">Top 10 Winning Countries</Card.Title>
             </Card.Header>
@@ -157,17 +169,45 @@ const DashDefault = () => {
               <Table responsive hover className="recent-users">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th style={{ textAlign: 'center' }}>#</th>
                     <th>Country</th>
-                    <th>Titles</th>
+                    <th style={{ textAlign: 'center' }}>Wins</th>
                   </tr>
                 </thead>
                 <tbody>
                   {topCountries.map((item, index) => (
                     <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{item.winner}</td>
-                      <td>{item.titles}</td>
+                      <td
+                        style={{ verticalAlign: 'middle', textAlign: 'center' }}
+                      >
+                        {index + 1}
+                      </td>
+                      <td
+                        className="d-flex align-items-center"
+                        style={{ verticalAlign: 'middle' }}
+                      >
+                        <img
+                          src={item.flag}
+                          alt={item.country}
+                          style={{
+                            width: '32px',
+                            height: '32px',
+                            borderRadius: '50%',
+                            objectFit: 'cover',
+                            marginRight: '12px',
+                          }}
+                        />
+                        <span style={{ fontWeight: 500 }}>{item.country}</span>
+                      </td>
+                      <td
+                        style={{
+                          verticalAlign: 'middle',
+                          textAlign: 'center',
+                          fontWeight: 500,
+                        }}
+                      >
+                        {item.wins}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -175,324 +215,123 @@ const DashDefault = () => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={6} xl={4}>
-          <Card className="card-event">
+
+        {/* Right Column: two stacked cards */}
+        <Col md={6} xl={4} className="d-flex flex-column">
+          {/* Top Card (fixed height, no flex-fill) */}
+          <Card className="card-event euro-card mb-3" id="euro-2028">
             <Card.Body>
-              <div className="row align-items-center justify-content-center">
+              <div className="row align-items-center justify-content-between">
                 <div className="col">
-                  <h5 className="m-0">Upcoming Event</h5>
+                  <h5 className="m-0 euro-title">Upcoming Euro Cup (2028)</h5>
                 </div>
                 <div className="col-auto">
-                  <label className="label theme-bg2 text-white f-14 f-w-400 float-end">34%</label>
+                  <label className="label theme-bg2 text-white f-14 f-w-400 float-end">
+                    {getDaysLeft()} days left
+                  </label>
                 </div>
               </div>
-              <h2 className="mt-2 f-w-300">
-                45<sub className="text-muted f-14">Competitors</sub>
+
+              <h2 className="mt-2 f-w-300 euro-teams-count">
+                24 <sub className="text-muted f-14">Teams</sub>
               </h2>
-              <h6 className="text-muted mt-3 mb-0">You can participate in event </h6>
-              <i className="fab fa-angellist text-c-purple f-50" />
+
+              <h6 className="text-muted mt-3 mb-0 euro-links">
+                Stay updated with the latest news:
+                <br />
+                <a
+                  href="https://www.uefa.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="euro-link"
+                >
+                  UEFA Official Euro Site
+                </a>
+                <a
+                  href="https://www.skysports.com/football/news"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="euro-link"
+                >
+                  Sky Sports Euro Coverage
+                </a>
+              </h6>
+
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/UEFA_Euro_2028_logo.svg/2880px-UEFA_Euro_2028_logo.svg.png"
+                alt="UEFA Euro 2028 Logo"
+                className="euro-logo"
+              />
             </Card.Body>
           </Card>
-          <Card>
-            <Card.Body className="border-bottom">
-              <div className="row d-flex align-items-center">
-                <div className="col-auto">
-                  <i className="feather icon-zap f-30 text-c-green" />
-                </div>
-                <div className="col">
-                  <h3 className="f-w-300">235</h3>
-                  <span className="d-block text-uppercase">total ideas</span>
-                </div>
-              </div>
-            </Card.Body>
-            <Card.Body>
-              <div className="row d-flex align-items-center">
-                <div className="col-auto">
-                  <i className="feather icon-map-pin f-30 text-c-blue" />
-                </div>
-                <div className="col">
-                  <h3 className="f-w-300">26</h3>
-                  <span className="d-block text-uppercase">total locations</span>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={6} xl={4}>
-          <Card className="card-social">
-            <Card.Body className="border-bottom">
-              <div className="row align-items-center justify-content-center">
-                <div className="col-auto">
-                  <i className="fab fa-facebook-f text-primary f-36" />
-                </div>
-                <div className="col text-end">
-                  <h3>12,281</h3>
-                  <h5 className="text-c-green mb-0">
-                    +7.2% <span className="text-muted">Total Likes</span>
-                  </h5>
-                </div>
-              </div>
-            </Card.Body>
-            <Card.Body>
-              <div className="row align-items-center justify-content-center card-active">
-                <div className="col-6">
-                  <h6 className="text-center m-b-10">
-                    <span className="text-muted m-r-5">Target:</span>35,098
-                  </h6>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-c-theme"
-                      role="progressbar"
-                      style={{ width: '60%', height: '6px' }}
-                      aria-valuenow="60"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-                <div className="col-6">
-                  <h6 className="text-center  m-b-10">
-                    <span className="text-muted m-r-5">Duration:</span>350
-                  </h6>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-c-theme2"
-                      role="progressbar"
-                      style={{ width: '45%', height: '6px' }}
-                      aria-valuenow="45"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={6} xl={4}>
-          <Card className="card-social">
-            <Card.Body className="border-bottom">
-              <div className="row align-items-center justify-content-center">
-                <div className="col-auto">
-                  <i className="fab fa-twitter text-c-blue f-36" />
-                </div>
-                <div className="col text-end">
-                  <h3>11,200</h3>
-                  <h5 className="text-c-purple mb-0">
-                    +6.2% <span className="text-muted">Total Likes</span>
-                  </h5>
-                </div>
-              </div>
-            </Card.Body>
-            <Card.Body>
-              <div className="row align-items-center justify-content-center card-active">
-                <div className="col-6">
-                  <h6 className="text-center m-b-10">
-                    <span className="text-muted m-r-5">Target:</span>34,185
-                  </h6>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-c-green"
-                      role="progressbar"
-                      style={{ width: '40%', height: '6px' }}
-                      aria-valuenow="40"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-                <div className="col-6">
-                  <h6 className="text-center  m-b-10">
-                    <span className="text-muted m-r-5">Duration:</span>800
-                  </h6>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-c-blue"
-                      role="progressbar"
-                      style={{ width: '70%', height: '6px' }}
-                      aria-valuenow="70"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col xl={4}>
-          <Card className="card-social">
-            <Card.Body className="border-bottom">
-              <div className="row align-items-center justify-content-center">
-                <div className="col-auto">
-                  <i className="fab fa-google-plus-g text-c-red f-36" />
-                </div>
-                <div className="col text-end">
-                  <h3>10,500</h3>
-                  <h5 className="text-c-blue mb-0">
-                    +5.9% <span className="text-muted">Total Likes</span>
-                  </h5>
-                </div>
-              </div>
-            </Card.Body>
-            <Card.Body>
-              <div className="row align-items-center justify-content-center card-active">
-                <div className="col-6">
-                  <h6 className="text-center m-b-10">
-                    <span className="text-muted m-r-5">Target:</span>25,998
-                  </h6>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-c-theme"
-                      role="progressbar"
-                      style={{ width: '80%', height: '6px' }}
-                      aria-valuenow="80"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-                <div className="col-6">
-                  <h6 className="text-center  m-b-10">
-                    <span className="text-muted m-r-5">Duration:</span>900
-                  </h6>
-                  <div className="progress">
-                    <div
-                      className="progress-bar progress-c-theme2"
-                      role="progressbar"
-                      style={{ width: '50%', height: '6px' }}
-                      aria-valuenow="50"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={6} xl={4}>
-          <Card>
-            <Card.Header>
-              <Card.Title as="h5">Rating</Card.Title>
+
+          {/* Bottom News Card (flex-fill) */}
+          <Card className="card-event shadow-sm border-0 flex-fill d-flex flex-column" id="latest-news">
+            <Card.Header className="bg-transparent border-bottom">
+              <Card.Title as="h5" className="mb-0">
+                Latest UEFA News
+              </Card.Title>
             </Card.Header>
-            <Card.Body>
-              <div className="row align-items-center justify-content-center m-b-20">
-                <div className="col-6">
-                  <h2 className="f-w-300 d-flex align-items-center float-start m-0">
-                    4.7 <i className="fa fa-star f-10 m-l-10 text-c-yellow" />
-                  </h2>
-                </div>
-                <div className="col-6">
-                  <h6 className="d-flex  align-items-center float-end m-0">
-                    0.4 <i className="fa fa-caret-up text-c-green f-22 m-l-10" />
+            {/* Make the body scrollable if content is too large */}
+            <Card.Body
+              className="flex-fill custom-scrollbar"
+              style={{
+                overflowY: 'auto',
+                minHeight: 0,
+                backdropFilter: 'blur(3px)',
+              }}
+            >
+              {newsItems.map((item, idx) => (
+                <div
+                  className="news-item p-2 rounded mb-3"
+                  key={idx}
+                  style={{
+                    transition: 'all 0.3s ease',
+                    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                  }}
+                >
+                  <h6 className="mb-1">
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="news-link"
+                      style={{
+                        color: '#3f4d67',
+                        fontWeight: 500,
+                        textDecoration: 'none',
+                        transition: 'color 0.2s ease-in-out',
+                      }}
+                    >
+                      {item.title.length > 80
+                        ? item.title.slice(0, 80) + '…'
+                        : item.title}
+                    </a>
                   </h6>
+                  <small className="text-muted">
+                    {new Date(item.fetched_at).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </small>
+                  <hr className="my-2" />
                 </div>
-              </div>
-
-              <div className="row">
-                <div className="col-xl-12">
-                  <h6 className="align-items-center float-start">
-                    <i className="fa fa-star f-10 m-r-10 text-c-yellow" />5
-                  </h6>
-                  <h6 className="align-items-center float-end">384</h6>
-                  <div className="progress m-t-30 m-b-20" style={{ height: '6px' }}>
-                    <div
-                      className="progress-bar progress-c-theme"
-                      role="progressbar"
-                      style={{ width: '70%' }}
-                      aria-valuenow="70"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-
-                <div className="col-xl-12">
-                  <h6 className="align-items-center float-start">
-                    <i className="fa fa-star f-10 m-r-10 text-c-yellow" />4
-                  </h6>
-                  <h6 className="align-items-center float-end">145</h6>
-                  <div className="progress m-t-30  m-b-20" style={{ height: '6px' }}>
-                    <div
-                      className="progress-bar progress-c-theme"
-                      role="progressbar"
-                      style={{ width: '35%' }}
-                      aria-valuenow="35"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-
-                <div className="col-xl-12">
-                  <h6 className="align-items-center float-start">
-                    <i className="fa fa-star f-10 m-r-10 text-c-yellow" />3
-                  </h6>
-                  <h6 className="align-items-center float-end">24</h6>
-                  <div className="progress m-t-30  m-b-20" style={{ height: '6px' }}>
-                    <div
-                      className="progress-bar progress-c-theme"
-                      role="progressbar"
-                      style={{ width: '25%' }}
-                      aria-valuenow="25"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-
-                <div className="col-xl-12">
-                  <h6 className="align-items-center float-start">
-                    <i className="fa fa-star f-10 m-r-10 text-c-yellow" />2
-                  </h6>
-                  <h6 className="align-items-center float-end">1</h6>
-                  <div className="progress m-t-30  m-b-20" style={{ height: '6px' }}>
-                    <div
-                      className="progress-bar progress-c-theme"
-                      role="progressbar"
-                      style={{ width: '10%' }}
-                      aria-valuenow="10"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-                <div className="col-xl-12">
-                  <h6 className="align-items-center float-start">
-                    <i className="fa fa-star f-10 m-r-10 text-c-yellow" />1
-                  </h6>
-                  <h6 className="align-items-center float-end">0</h6>
-                  <div className="progress m-t-30  m-b-5" style={{ height: '6px' }}>
-                    <div
-                      className="progress-bar"
-                      role="progressbar"
-                      style={{ width: '0%' }}
-                      aria-valuenow="0"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
-              </div>
+              ))}
             </Card.Body>
           </Card>
         </Col>
-        <Col md={6} xl={8} className="user-activity">
-          <Card>
-            <Tabs defaultActiveKey="today" id="uncontrolled-tab-example">
-              <Tab eventKey="today" title="Today">
-                {tabContent}
-              </Tab>
-              <Tab eventKey="week" title="This Week">
-                {tabContent}
-              </Tab>
-              <Tab eventKey="all" title="All">
-                {tabContent}
-              </Tab>
-            </Tabs>
-          </Card>
+      </Row>
+      <Row className="mb-4 mt-5" id="fun-facts">
+        <Col>
+          <h4 className="mb-1 text-center">⚽ Fun Facts About the UEFA Euro Cup</h4>
+          <p className="text-muted text-center mb-4" style={{ fontSize: '0.95rem' }}>
+            Discover the most exciting records and unforgettable moments from the history of the Euros.
+          </p>
         </Col>
+      </Row>
+      <Row>
+        <EuroExtremes />
       </Row>
     </React.Fragment>
   );

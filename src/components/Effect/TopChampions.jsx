@@ -6,7 +6,8 @@ const TopChampions = () => {
   const [winners, setWinners] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/euro/winners')
+    axios
+      .get('http://localhost:5001/api/championships/top-countries')
       .then((res) => setWinners(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -19,24 +20,32 @@ const TopChampions = () => {
         </Card.Header>
         <Card.Body className="px-0 py-2">
           <Table responsive hover className="recent-users">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Country</th>
+                <th>Titles</th>
+              </tr>
+            </thead>
             <tbody>
               {winners.map((team, index) => (
                 <tr key={index}>
-                  <td>
+                  <td>{index + 1}</td>
+                  <td className="d-flex align-items-center gap-2">
                     <img
-                      className="rounded-circle"
-                      style={{ width: '40px' }}
-                      src={`/flags/${team.country_code}.png`}
+                      src={team.flag}
                       alt={team.country}
+                      style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        marginRight: '10px'
+                      }}
                     />
+                    <span>{team.country}</span>
                   </td>
-                  <td>
-                    <h6 className="mb-1">{team.country}</h6>
-                    <p className="m-0">{team.wins} titles</p>
-                  </td>
-                  <td>
-                    <h6 className="text-muted">Rank #{index + 1}</h6>
-                  </td>
+                  <td>{team.wins}</td>
                 </tr>
               ))}
             </tbody>

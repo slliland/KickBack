@@ -3,20 +3,34 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
-// GET /api/championships/top-countries
 router.get('/top-countries', async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT winner, COUNT(*) as titles
+      SELECT winner AS country, COUNT(*) AS wins, winner_code AS country_code
       FROM euro_summary
       WHERE winner IS NOT NULL
-      GROUP BY winner
-      ORDER BY titles DESC
+      GROUP BY winner, winner_code
+      ORDER BY wins DESC
       LIMIT 10;
     `);
-    res.json(result.rows);
+
+    const enriched = await Promise.all(result.rows.map(async (row) => {
+      const flagRes = await pool.query(
+        'SELECT flag FROM team_flags WHERE team_code = $1',
+        [row.country_code]
+      );
+      const flagData = flagRes.rows[0]?.flag;
+      const base64Flag = flagData ? `data:image/png;base64,${flagData.toString('base64')}` : null;
+
+      return {
+        ...row,
+        flag: base64Flag,
+      };
+    }));
+
+    res.json(enriched);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     res.status(500).send('Server error');
   }
 });
