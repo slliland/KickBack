@@ -52,8 +52,8 @@ const routes = [
     routes: [
       {
         exact: 'true',
-        path: '/app/dashboard/default',
-        element: lazy(() => import('./views/dashboard'))
+        path: '/app/overview/default',
+        element: lazy(() => import('./views/overview'))
       },
       {
         exact: 'true',
@@ -107,8 +107,8 @@ const routes = [
       },
       {
         exact: 'true',
-        path: '/sample-page',
-        element: lazy(() => import('./views/extra/SamplePage'))
+        path: 'profile-page',
+        element: lazy(() => import('./views/extra/ProfilePage'))
       },
       {
         path: '*',

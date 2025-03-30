@@ -21,7 +21,7 @@ const NavLeft = () => {
             <Dropdown.Toggle variant={'link'} id="dropdown-basic">
               Dropdown
             </Dropdown.Toggle>
-            <ul>
+            <ul> 
               <Dropdown.Menu>
                 <li>
                   <Link to="#" className="dropdown-item">

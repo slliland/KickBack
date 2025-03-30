@@ -5,13 +5,19 @@
   align-items: center;
 
   .b-bg {
-    background: $theme-color;
+    background: $menu-caption-color;
     border-radius: 10px;
     width: 35px;
     height: 35px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
+    img {
+      max-width: 70%;
+      max-height: 70%;
+      object-fit: contain;
+    }
 
     i {
       color: #fff;
@@ -20,10 +26,17 @@
 
   .b-title {
     margin-left: 10px;
-    font-weight: 100;
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
     color: #fff;
-    font-size: 18px;
-  }
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    &:hover {
+      transform: scale(1.15);
+    }
+  }  
 }
 
 .navbar-collapsed {
@@ -790,7 +803,7 @@
   color: $menu-dark-text-color;
 
   .pcoded-submenu {
-    background: darken($header-dark-background, 3%);
+    background: darken($menu-dark-background, 3%);
     padding: 15px 0;
   }
 
@@ -1046,7 +1059,7 @@
       &.active,
       &:focus,
       &:hover {
-        color: #1dc4e9;
+        color: $primary-color;
       }
 
       .pcoded-submenu > li {
@@ -1055,7 +1068,7 @@
         &:hover {
           > a {
             &:before {
-              background: #1dc4e9;
+              background: $primary-color;
             }
           }
         }
@@ -1067,7 +1080,7 @@
       &.pcoded-trigger {
         &:after {
           content: '';
-          background-color: #1dc4e9;
+          background-color: $primary-color;
           z-index: 1027;
           position: absolute;
           left: 0;
@@ -1413,13 +1426,13 @@
 }
 
 .ps__thumb-y {
-  background: #2a3446;
+  background: #5e87d2;
 }
 
 .ps__rail-y.ps--clicking .ps__thumb-y,
 .ps__rail-y:focus > .ps__thumb-y,
 .ps__rail-y:hover > .ps__thumb-y {
-  background: #222a38;
+  background: #365488;
 }
 
 /* nav-outside */

@@ -7,11 +7,11 @@ const menuItems = {
       icon: 'icon-navigation',
       children: [
         {
-          id: 'dashboard',
-          title: 'Dashboard',
+          id: 'overview',
+          title: 'Overview',
           type: 'item',
           icon: 'feather icon-home',
-          url: '/app/dashboard/default'
+          url: '/app/overview/default'
         }
       ]
     },
@@ -122,10 +122,6 @@ const menuItems = {
           title: 'Authentication',
           type: 'collapse',
           icon: 'feather icon-lock',
-          badge: {
-            title: 'New',
-            type: 'label-danger'
-          },
           children: [
             {
               id: 'signup-1',
@@ -146,10 +142,10 @@ const menuItems = {
           ]
         },
         {
-          id: 'sample-page',
-          title: 'Sample Page',
+          id: 'profile-page',
+          title: 'Author',
           type: 'item',
-          url: '/sample-page',
+          url: '/profile-page',
           classes: 'nav-item',
           icon: 'feather icon-sidebar'
         },
