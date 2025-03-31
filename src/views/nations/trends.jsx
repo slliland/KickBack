@@ -22,11 +22,9 @@ import { Line, Bar } from 'react-chartjs-2';
 import '../../assets/scss/partials/widget/_trends.scss';
 import { allTeamCode, teamNameData, teamColor } from '../utils/teamMap';
 
-
 ChartJS.register(LineElement, BarElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
 const allTeams = allTeamCode;
-
 const teamNameMap = teamNameData;
 
 const teamMetadata = Object.fromEntries(
@@ -61,15 +59,33 @@ const TeamTrends = () => {
   const [filterBy, setFilterBy] = useState('All');
   const [loading, setLoading] = useState(true);
 
-  const groupedByRegion = allTeams.reduce((acc, code) => {
+  // Filter teams based on search term and filter criteria
+  const filterTeamList = () => {
+    return allTeams.filter(code => {
+      const name = teamNameMap[code]?.toLowerCase() || '';
+      const region = teamMetadata[code]?.region || '';
+      const ach = teamMetadata[code]?.achievement || '';
+      const matchesSearch = name.includes(searchTerm.toLowerCase()) || code.includes(searchTerm.toUpperCase());
+      const matchesFilter = filterBy === 'All' || region === filterBy || ach === filterBy;
+      return matchesSearch && matchesFilter;
+    });
+  };
+
+  // Compute filtered teams and group them by region
+  const filteredTeams = filterTeamList();
+  const groupedByRegion = filteredTeams.reduce((acc, code) => {
     const region = teamMetadata[code]?.region || 'Other';
     if (!acc[region]) acc[region] = [];
     acc[region].push(code);
     return acc;
   }, {});
 
-  const handleSelectAll = () => setSelectedTeams(allTeams);
-  const handleClearAll = () => setSelectedTeams([]);
+  // Update selection to only the filtered teams
+  const handleSelectAll = () => setSelectedTeams(filteredTeams);
+  const handleClearAll = () => {
+    setSelectedTeams([]);
+    setTrendData([]);
+  };
 
   useEffect(() => {
     if (selectedTeams.length > 0) {
@@ -95,17 +111,6 @@ const TeamTrends = () => {
     setSelectedTeams(prev =>
       prev.includes(code) ? prev.filter(c => c !== code) : [...prev, code]
     );
-  };
-
-  const filterTeamList = () => {
-    return allTeams.filter(code => {
-      const name = teamNameMap[code]?.toLowerCase() || '';
-      const region = teamMetadata[code]?.region || '';
-      const ach = teamMetadata[code]?.achievement || '';
-      const matchesSearch = name.includes(searchTerm.toLowerCase()) || code.includes(searchTerm.toUpperCase());
-      const matchesFilter = filterBy === 'All' || region === filterBy || ach === filterBy;
-      return matchesSearch && matchesFilter;
-    });
   };
 
   const colors = teamColor;
@@ -137,7 +142,7 @@ const TeamTrends = () => {
 
   return (
     <div className="trends-container">
-      <h2 className="section-title">📊 UEFA EURO Team Performance Trends</h2>
+      <h2 className="section-title">UEFA EURO Team Performance Trends</h2>
 
       <Row className="mb-3">
         <Col md={6}>
