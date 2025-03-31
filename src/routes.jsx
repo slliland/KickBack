@@ -78,23 +78,13 @@ const routes = [
       },
       {
         exact: 'true',
-        path: '/forms/form-basic',
-        element: lazy(() => import('./views/forms/FormsElements'))
+        path: '/performance/Eurostats',
+        element: lazy(() => import('./views/performance/EuroStats'))
       },
       {
         exact: 'true',
-        path: '/tables/bootstrap',
-        element: lazy(() => import('./views/tables/BootstrapTable'))
-      },
-      {
-        exact: 'true',
-        path: '/charts/nvd3',
-        element: lazy(() => import('./views/charts/nvd3-chart'))
-      },
-      {
-        exact: 'true',
-        path: '/maps/google-map',
-        element: lazy(() => import('./views/maps/GoogleMaps'))
+        path: '/performance/insights',
+        element: lazy(() => import('./views/performance/insights'))
       },
       {
         exact: 'true',

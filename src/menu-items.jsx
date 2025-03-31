@@ -56,48 +56,26 @@ const menuItems = {
       ]
     },
     {
-      id: 'ui-forms',
-      title: 'FORMS & TABLES',
+      id: 'performance',
+      title: 'Performance',
       type: 'group',
-      icon: 'icon-group',
+      icon: 'feather icon-activity',
       children: [
         {
-          id: 'forms',
-          title: 'Form Elements',
+          id: 'euro-stats',
+          title: 'Dashboard',
           type: 'item',
-          icon: 'feather icon-file-text',
-          url: '/forms/form-basic'
+          icon: 'feather icon-bar-chart',
+          url: '/performance/EuroStats',
         },
         {
-          id: 'table',
-          title: 'Table',
-          type: 'item',
-          icon: 'feather icon-server',
-          url: '/tables/bootstrap'
-        }
-      ]
-    },
-    {
-      id: 'chart-maps',
-      title: 'Chart & Maps',
-      type: 'group',
-      icon: 'icon-charts',
-      children: [
-        {
-          id: 'charts',
-          title: 'Charts',
+          id: 'insights',
+          title: 'Insights',
           type: 'item',
           icon: 'feather icon-pie-chart',
-          url: '/charts/nvd3'
-        },
-        {
-          id: 'maps',
-          title: 'Maps',
-          type: 'item',
-          icon: 'feather icon-map',
-          url: '/maps/google-map'
+          url: '/performance/insights'
         }
-      ]
+      ],
     },
     {
       id: 'pages',
@@ -138,72 +116,26 @@ const menuItems = {
           icon: 'feather icon-sidebar'
         },
         {
-          id: 'documentation',
-          title: 'Documentation',
-          type: 'item',
-          icon: 'feather icon-book',
-          classes: 'nav-item',
-          url: 'https://codedthemes.gitbook.io/datta/',
-          target: true,
-          external: true
-        },
-        {
-          id: 'menu-level',
-          title: 'Menu Levels',
-          type: 'collapse',
-          icon: 'feather icon-menu',
-          children: [
-            {
-              id: 'menu-level-1.1',
-              title: 'Menu Level 1.1',
-              type: 'item',
-              url: '#!'
-            },
-            {
-              id: 'menu-level-1.2',
-              title: 'Menu Level 2.2',
-              type: 'collapse',
-              children: [
-                {
-                  id: 'menu-level-2.1',
-                  title: 'Menu Level 2.1',
-                  type: 'item',
-                  url: '#'
-                },
-                {
-                  id: 'menu-level-2.2',
-                  title: 'Menu Level 2.2',
-                  type: 'collapse',
-                  children: [
-                    {
-                      id: 'menu-level-3.1',
-                      title: 'Menu Level 3.1',
-                      type: 'item',
-                      url: '#'
-                    },
-                    {
-                      id: 'menu-level-3.2',
-                      title: 'Menu Level 3.2',
-                      type: 'item',
-                      url: '#'
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           id: 'disabled-menu',
-          title: 'Disabled Menu',
+          title: 'Close Page',
           type: 'item',
           url: '#',
-          classes: 'nav-item disabled',
-          icon: 'feather icon-power'
-        }
+          classes: 'nav-item close-page',
+          icon: 'feather icon-power',
+          onClick: () => {
+            // Ask for confirmation before closing
+            if (window.confirm("Are you sure you want to close this page?")) {
+              // Try to close the window. This will work only if the window was opened by script.
+              window.close();
+              // Fallback: redirect to an "empty" page.
+              window.location.href = "about:blank";
+            }
+          }
+        }            
       ]
     }
   ]
 };
+
 
 export default menuItems;

@@ -1,14 +1,49 @@
 .flag-map-container {
     padding: 2rem;
     background: #00205b;
-  
+    min-height: 750px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    
     .section-title {
       color: #ffcc00;
-      font-size: 2rem;
+      font-size: 2.5rem;
       text-align: center;
       margin-bottom: 1.5rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
-  
+    
+    .loading-message,
+    .error-message {
+      color: #fff;
+      font-size: 1.25rem;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    // Info box styling for the marker info window
+    .info-box {
+      max-width: 250px;
+      color: #333;
+      font-family: 'Arial', sans-serif;
+    
+      h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
+        color: #00205b;
+      }
+    
+      p {
+        margin: 0.3rem 0;
+        font-size: 0.95rem;
+      }
+    }
+    
     .gm-style img {
       border-radius: 4px;
       box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);

@@ -1,0 +1,125 @@
+.dashboard-container {
+    padding: 1.5rem 2rem;
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+    color: #333;
+  
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      color: #00205b; // dark blue title
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  
+    .subtitle {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      color: #666;
+    }
+  
+    // Map container with dark blue background, a thicker gold border, and a pronounced shadow for clarity
+    .map-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      background-color: #00205b;
+      border: 3px solid #ffcc00; // thicker gold accent border
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
+  
+    .tooltip {
+      position: absolute;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      pointer-events: none;
+      font-size: 1rem;
+      color: #333;
+    }
+  
+    .legend {
+      max-width: 900px;
+      margin: 1rem auto 2rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  
+      h4 {
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
+        color: #ffcc00; // gold accent for legend title
+      }
+  
+      .legend-colors {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+  
+        .legend-color-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+  
+          .color-box {
+            width: 24px;
+            height: 24px;
+            border: 1px solid #333;
+          }
+        }
+      }
+    }
+  
+    .chart-container {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  
+      h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #00205b;
+      }
+  
+      .no-country {
+        text-align: center;
+        color: #999;
+        font-style: italic;
+        margin-top: 2rem;
+      }
+    }
+  
+    // Country info panel styling
+    .country-info {
+      max-width: 900px;
+      margin: 1rem auto;
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+      text-align: left;
+  
+      h2 {
+        margin-bottom: 1rem;
+        color: #00205b;
+      }
+  
+      p {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+    }
+  }
+  
