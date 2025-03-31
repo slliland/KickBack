@@ -2,7 +2,7 @@ name: Fetch Euro 2028 News
 
 on:
   schedule:
-    - cron: '10 12 * * *'
+    - cron: '15 11 * * *'
   workflow_dispatch:     # manual trigger option
 
 jobs:
@@ -33,4 +33,4 @@ jobs:
         PGUSER: ${{ secrets.PGUSER }}
         PGPASSWORD: ${{ secrets.PGPASSWORD }}
       run: |
-        python ../backend/scripts/fetch_euro_news.py
+        python backend/scripts/fetch_news.py
