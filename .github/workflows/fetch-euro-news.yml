@@ -2,7 +2,7 @@ name: Fetch Euro 2028 News
 
 on:
   schedule:
-    - cron: '15 11 * * *'
+    - cron: '18 13 * * *'
   workflow_dispatch:     # manual trigger option
 
 jobs:
