@@ -81,13 +81,23 @@ router.get('/profiles', async (req, res) => {
       }
 
       const scorerQuery = `
-        SELECT name, COUNT(*) AS goals, position_national AS position, TO_CHAR(birth_date, 'Mon DD, YYYY') AS birth_date, height
-        FROM player_starts
-        WHERE country_code = $1 AND name_shirt IS NOT NULL
-        GROUP BY name, position_national, birth_date, height
+        SELECT
+          ps.name,
+          COUNT(*) AS goals,
+          ps.position_national AS position,
+          TO_CHAR(ps.birth_date, 'Mon DD, YYYY') AS birth_date,
+          ps.height
+        FROM matches m
+        CROSS JOIN LATERAL jsonb_array_elements(m.events) AS evt
+        JOIN player_starts ps ON ps.id_player::text = evt->>'primary_id_person'
+        WHERE evt->>'type' = 'GOAL'
+          AND ps.country_code = $1
+        GROUP BY ps.name, ps.position_national, ps.birth_date, ps.height
         ORDER BY goals DESC
         LIMIT 5;
       `;
+
+
       const scorerResult = await pool.query(scorerQuery, [code]);
 
       team.top_scorers = scorerResult.rows.map(r => ({

@@ -25,6 +25,7 @@ app.use('/api/nations', nationsProfilesRouter);
 const nationsTrendsRouter = require('./routes/nationsTrends');
 app.use('/api/nations', nationsTrendsRouter);
 
+app.use('/api/nations', require('./routes/flagMap'));
 
 // Start server
 app.listen(PORT, () => {

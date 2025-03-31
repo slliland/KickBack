@@ -2,7 +2,7 @@ name: Fetch Euro 2028 News
 
 on:
   schedule:
-    - cron: '40 15 * * *'
+    - cron: '05 16 * * *'
   workflow_dispatch:
 
 jobs:
@@ -44,8 +44,6 @@ jobs:
         PGPORT: 5432
         PGDATABASE: euro_db
         PGUSER: postgres
-        PGPASSWORD: postgres
-        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-        GOOGLE_CSE_ID: ${{ secrets.GOOGLE_CSE_ID }}
+        PGPASSWORD: songyujian2002
       run: |
         python backend/scripts/fetch_news.py
