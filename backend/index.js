@@ -13,7 +13,17 @@ app.use('/api/championships', require('./routes/championships'));
 
 const euroStatsRoute = require('./routes/euroStats');
 app.use('/api/euro', require('./routes/euroStats')); 
+
 app.use('/api/search', require('./routes/search'));
+
+const nationsTimelineRoute = require('./routes/nationsTimeline');
+app.use('/api/nations', nationsTimelineRoute);
+
+const nationsProfilesRouter = require('./routes/nationsProfiles');
+app.use('/api/nations', nationsProfilesRouter);
+
+const nationsTrendsRouter = require('./routes/nationsTrends');
+app.use('/api/nations', nationsTrendsRouter);
 
 
 // Start server

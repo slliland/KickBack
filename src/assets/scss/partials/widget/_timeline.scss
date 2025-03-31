@@ -1,0 +1,241 @@
+.timeline-container {
+  background-color: #00205b;
+  color: #ffcc00;
+  padding: 1rem;
+  position: relative;
+  min-height: 80vh;
+
+  &.fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #00205b;
+    padding: 2rem;
+    overflow: auto;
+  }
+}
+
+.timeline-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #FFD700; // EURO yellow
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.timeline-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.timeline-filters button {
+  background: transparent;
+  border: 1px solid #ffcc00;
+  color: #ffcc00;
+  padding: 0.4rem 0.8rem;
+  margin: 0.2rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
+
+  &:hover {
+    background: #ffcc00;
+    color: #00205b;
+  }
+}
+
+.fullscreen-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 24px;
+  background: #ffd700;
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem 0.7rem;
+  color: #00205B;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: #ffcf00;
+  }
+}
+
+.autoplay-toggle {
+  position: fixed;
+  bottom: 70px;
+  right: 24px;
+  background: #ffd700;
+  border: none;
+  border-radius: 50%;
+  padding: 0.6rem 0.7rem;
+  color: #00205B;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: #ffcf00;
+  }
+}
+
+.timeline-wrapper {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 6rem 0 1rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  scrollbar-color: #ffcc00 #00205b;
+
+  &::-webkit-scrollbar {
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ffcc00;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #001437;
+  }
+}
+
+.timeline-year-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .year-label {
+    font-weight: bold;
+    &.above { margin-bottom: 0.4rem; }
+    &.below { margin-top: 0.5rem; }
+  }
+
+  .vertical-line {
+    width: 2px;
+    height: 60px;
+    background-color: #ffcc00;
+    margin: 4px 0;
+  }
+
+  .flag-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 2.5rem;
+  }
+
+  .flag-item {
+    transition: transform 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+    .flag-img {
+      width: 36px;
+      height: 24px;
+      object-fit: contain;
+      border: 1px solid #ccc;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    .flag-placeholder {
+      width: 36px;
+      height: 24px;
+      background: #999;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.7rem;
+      border-radius: 2px;
+    }
+  }
+
+  .expansion-line {
+    position: absolute;
+    top: -70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+  
+    .expansion-connector {
+      width: 2px;
+      height: 20px;
+      background-color: #ffcc00;
+      margin-bottom: 4px;
+    }
+  
+    .expansion-marker {
+      width: 12px;
+      height: 12px;
+      background-color: #ffcc00;
+      border-radius: 50%;
+      margin-bottom: 4px;
+      box-shadow: 0 0 0 2px #00205b; // optional border for contrast
+    }
+  
+    .expansion-label {
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-style: italic;
+      text-align: center;
+      font-weight: 600;
+      background: #00205b;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }  
+
+    &.shifted {
+      top: 75px;
+    }
+  }
+}
+
+.timeline-insights {
+  margin-top: 3rem;
+  background: #001437;
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: #ffcc00;
+
+  h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #FFD700;
+  }
+
+  p {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

@@ -55,35 +55,26 @@ const routes = [
         path: '/app/overview/default',
         element: lazy(() => import('./views/overview'))
       },
+      // Nations and Legacy group routes
       {
         exact: 'true',
-        path: '/basic/button',
-        element: lazy(() => import('./views/ui-elements/basic/BasicButton'))
+        path: '/nations/countries',
+        element: lazy(() => import('./views/nations/countries'))
       },
       {
         exact: 'true',
-        path: '/basic/badges',
-        element: lazy(() => import('./views/ui-elements/basic/BasicBadges'))
+        path: '/nations/trends',
+        element: lazy(() => import('./views/nations/trends'))
       },
       {
         exact: 'true',
-        path: '/basic/breadcrumb-paging',
-        element: lazy(() => import('./views/ui-elements/basic/BasicBreadcrumb'))
+        path: '/nations/flag-map',
+        element: lazy(() => import('./views/nations/flag-map'))
       },
       {
         exact: 'true',
-        path: '/basic/collapse',
-        element: lazy(() => import('./views/ui-elements/basic/BasicCollapse'))
-      },
-      {
-        exact: 'true',
-        path: '/basic/tabs-pills',
-        element: lazy(() => import('./views/ui-elements/basic/BasicTabsPills'))
-      },
-      {
-        exact: 'true',
-        path: '/basic/typography',
-        element: lazy(() => import('./views/ui-elements/basic/BasicTypography'))
+        path: '/nations/timeline',
+        element: lazy(() => import('./views/nations/timeline'))
       },
       {
         exact: 'true',

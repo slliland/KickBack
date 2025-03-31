@@ -1766,6 +1766,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@kurkle/color@npm:^0.3.0":
+  version: 0.3.4
+  resolution: "@kurkle/color@npm:0.3.4"
+  checksum: 10c0/0e9fd55c614b005c5f0c4c755bca19ec0293bc7513b4ea3ec1725234f9c2fa81afbc78156baf555c8b9cb0d305619253c3f5bca016067daeebb3d00ebb4ea683
+  languageName: node
+  linkType: hard
+
 "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1":
   version: 5.1.1-v1
   resolution: "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1"
@@ -3043,6 +3050,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chart.js@npm:^4.4.8":
+  version: 4.4.8
+  resolution: "chart.js@npm:4.4.8"
+  dependencies:
+    "@kurkle/color": "npm:^0.3.0"
+  checksum: 10c0/4777e3fef7ccfb664c02b79f90e53fb0e46c01293bc56af5ab81aa8ffef4b1ccc675bef948b7efd071a5dd0ebd59c0e95c42ef606f728da8e3ff1741fc2d1df0
+  languageName: node
+  linkType: hard
+
 "chokidar@npm:>=3.0.0 <4.0.0":
   version: 3.6.0
   resolution: "chokidar@npm:3.6.0"
@@ -3608,6 +3624,7 @@ __metadata:
     axios: "npm:^1.8.4"
     bootstrap: "npm:^5.3.3"
     chance: "npm:^1.1.11"
+    chart.js: "npm:^4.4.8"
     cors: "npm:^2.8.5"
     d3: "npm:^7.9.0"
     dotenv: "npm:^16.4.7"
@@ -3629,12 +3646,13 @@ __metadata:
     prettier: "npm:3.2.5"
     process: "npm:^0.11.10"
     react: "npm:^18.2.0"
-    react-bootstrap: "npm:^2.10.2"
+    react-bootstrap: "npm:^2.10.9"
+    react-chartjs-2: "npm:^5.3.0"
     react-copy-to-clipboard: "npm:^5.1.0"
     react-dom: "npm:^18.2.0"
     react-error-overlay: "npm:6.0.11"
     react-google-charts: "npm:^4.0.1"
-    react-icons: "npm:^5.0.1"
+    react-icons: "npm:^5.5.0"
     react-perfect-scrollbar: "npm:^1.5.8"
     react-router-dom: "npm:^6.22.3"
     sass: "npm:1.58.3"
@@ -6790,7 +6808,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-bootstrap@npm:^2.10.2":
+"react-bootstrap@npm:^2.10.9":
   version: 2.10.9
   resolution: "react-bootstrap@npm:2.10.9"
   dependencies:
@@ -6815,6 +6833,16 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/96a198ee97fc6f8f1cbd68bd97daae3509561fd4613b53a55eeb170d138a8dd78cc336c679fee4adb146427d5cc92cd03256793099431984e8f91fd20210a8c8
+  languageName: node
+  linkType: hard
+
+"react-chartjs-2@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "react-chartjs-2@npm:5.3.0"
+  peerDependencies:
+    chart.js: ^4.1.1
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/4415d40217c084a49f9a936fbd30f67e0e705148e6f8359bec65601033d1076f31085c45793839fc29ec833e6c427b0bf9861a0c54c432c08d35bc9590ffa41a
   languageName: node
   linkType: hard
 
@@ -6866,7 +6894,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-icons@npm:^5.0.1":
+"react-icons@npm:^5.5.0":
   version: 5.5.0
   resolution: "react-icons@npm:5.5.0"
   peerDependencies:

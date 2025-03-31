@@ -16,52 +16,40 @@ const menuItems = {
       ]
     },
     {
-      id: 'ui-element',
-      title: 'UI ELEMENT',
+      id: 'nations-legacy',
+      title: 'Nations and Legacy',
       type: 'group',
-      icon: 'icon-ui',
+      icon: 'feather icon-globe',
       children: [
         {
-          id: 'component',
-          title: 'Component',
+          id: 'legacy-section',
+          title: 'Legacy Insights',
           type: 'collapse',
-          icon: 'feather icon-box',
+          icon: 'feather icon-award',
           children: [
             {
-              id: 'button',
-              title: 'Button',
+              id: 'country-profiles',
+              title: 'Country Profiles',
               type: 'item',
-              url: '/basic/button'
+              url: '/nations/countries'
             },
             {
-              id: 'badges',
-              title: 'Badges',
+              id: 'team-trends',
+              title: 'Team Performance Trends',
               type: 'item',
-              url: '/basic/badges'
+              url: '/nations/trends'
             },
             {
-              id: 'breadcrumb',
-              title: 'Breadcrumb & Pagination',
+              id: 'flag-map',
+              title: 'Interactive Flag Map',
               type: 'item',
-              url: '/basic/breadcrumb-paging'
+              url: '/nations/flag-map'
             },
             {
-              id: 'collapse',
-              title: 'Collapse',
+              id: 'euro-timeline',
+              title: 'Championship Timeline',
               type: 'item',
-              url: '/basic/collapse'
-            },
-            {
-              id: 'tabs-pills',
-              title: 'Tabs & Pills',
-              type: 'item',
-              url: '/basic/tabs-pills'
-            },
-            {
-              id: 'typography',
-              title: 'Typography',
-              type: 'item',
-              url: '/basic/typography'
+              url: '/nations/timeline'
             }
           ]
         }

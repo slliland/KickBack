@@ -1,0 +1,32 @@
+.team-trends-container {
+    padding: 2rem;
+    background-color: #f4f4f4;
+  
+    .section-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00205b;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+  
+    .dropdown {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  
+    .chart-wrapper {
+      margin-top: 2rem;
+  
+      canvas {
+        max-width: 100%;
+      }
+  
+      h5 {
+        margin-top: 2rem;
+        font-weight: 600;
+        color: #00205b;
+      }
+    }
+  }
+  

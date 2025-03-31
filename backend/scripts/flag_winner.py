@@ -15,7 +15,19 @@ winner_to_code = {
     'Yugoslavia': 'YUG',
     'Denmark': 'DEN',
     'Greece': 'GRE',
-    'Czech Republic': 'CZE'
+    'Czech Republic': 'CZE',
+    'USSR': 'USSR',
+    'Serbia': 'SER',
+    'West Germany': 'FRG',
+    'Germany': 'GER',
+    'Yugoslavia': 'YUG',
+    'Czechoslovakia': 'TCH',
+    'Czechia': 'CZE',
+    'Republic of Ireland': 'IRL',
+    'Northern Ireland': 'NIR',
+    'Netherlands': 'NED',
+    'North Macedonia': 'MKD',
+    'Commonwealth of Independent States': 'CIS'
 }
 
 # Connect to PostgreSQL
@@ -52,5 +64,3 @@ for winner, code in winner_to_code.items():
 conn.commit()
 cur.close()
 conn.close()
-
-"✅ Mapping completed and `winner_code` column updated in euro_summary."
