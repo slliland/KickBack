@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../assets/scss/partials/widget/_insights.scss';
 
+
 const Insights = () => {
   const [insights, setInsights] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:5001/api/euro/insights')
+    axios.get(`${API_BASE}/api/euro/insights`)
       .then(res => {
         setInsights(res.data);
         setLoading(false);

@@ -12,9 +12,11 @@ import avatar3 from '../../assets/images/user/avatar-3.jpg';
 
 const DashDefault = () => {
   const [newsItems, setNewsItems] = useState([]);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/euro/news')
+    // axios.get('http://localhost:5001/api/euro/news')
+    axios.get(`${API_BASE}/api/euro/news`)
       .then(res => setNewsItems(res.data))
       .catch(err => console.error('Error fetching news:', err));
   }, []);
@@ -24,7 +26,8 @@ const DashDefault = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/championships/top-countries');
+        // const res = await axios.get('http://localhost:5001/api/championships/top-countries');
+        const res = await axios.get(`${API_BASE}/api/championships/top-countries`);
         setTopCountries(res.data);
       } catch (err) {
         console.error('Error fetching top countries:', err);

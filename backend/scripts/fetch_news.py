@@ -10,13 +10,14 @@ key = os.getenv("GOOGLE_API_KEY")
 cx = os.getenv("GOOGLE_CSE_ID")
 
 # PostgreSQL connection
-conn = psycopg2.connect(
-    dbname=os.getenv("DB_NAME"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    host=os.getenv("DB_HOST"),
-    port=os.getenv("DB_PORT")
-)
+# conn = psycopg2.connect(
+#     dbname=os.getenv("DB_NAME"),
+#     user=os.getenv("DB_USER"),
+#     password=os.getenv("DB_PASSWORD"),
+#     host=os.getenv("DB_HOST"),
+#     port=os.getenv("DB_PORT")
+# )
+conn = psycopg2.connect(os.environ["DATABASE_URL"], sslmode="require")
 cur = conn.cursor()
 
 def fetch_news_from_google_api():

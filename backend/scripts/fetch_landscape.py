@@ -7,6 +7,7 @@ import json
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
+import psycopg2
 
 load_dotenv(dotenv_path="../.env")
 
@@ -56,12 +57,13 @@ def process_goals(goals_str):
     return open_play, own_goal, penalty
 
 # --- Configuration & Data Loading ---
-db_user = os.getenv('DB_USER')
-db_pass = os.getenv('DB_PASSWORD')
-db_host = os.getenv('DB_HOST')
-db_port = os.getenv('DB_PORT')
-db_name = os.getenv('DB_NAME')
-DATABASE_URL = f'postgresql://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}'
+# db_user = os.getenv('DB_USER')
+# db_pass = os.getenv('DB_PASSWORD')
+# db_host = os.getenv('DB_HOST')
+# db_port = os.getenv('DB_PORT')
+# db_name = os.getenv('DB_NAME')
+# DATABASE_URL = f'postgresql://{db_user}:{db_pass}@{db_host}:{db_port}/{db_name}'
+DATABASE_URL = os.environ.get("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
 
 # Mapping from Given Code to Correct ISO 3166-1 Alpha‑3 Code
