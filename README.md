@@ -17,7 +17,7 @@ A full-stack data visualization dashboard showcasing historical team performance
 
 ## Screenshots
 
-![](./src/assets/images/grid_image_no_resize.jpg)
+![](./src/assets/images/screenshot.jpg)
 
 ---
 
