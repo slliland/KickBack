@@ -45,21 +45,23 @@
 // });
 const express = require('express');
 const cors = require('cors');
-const { Pool } = require('pg');
-const path = require('path'); // ✅ needed for serving frontend
+const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5001;
 
-// ✅ Allow CORS from local and deployed frontend
 const corsOptions = {
   origin: [
-    'https://kickback-ac72db97537b.herokuapp.com'
-    // 'http://localhost:3000'
+    'https://kickback-ac72db97537b.herokuapp.com',
+    'http://localhost:3000'
   ],
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 200
 };
+
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // ✅ handle preflight requests
+
 app.use(express.json());
 
 // ✅ API Routes
