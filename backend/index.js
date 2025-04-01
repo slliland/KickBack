@@ -46,24 +46,23 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
-const path = require('path');
+const path = require('path'); // ✅ needed for serving frontend
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT;
 
-// ✅ Allow requests from both local dev and deployed frontend
+// ✅ Allow CORS from local and deployed frontend
 const corsOptions = {
   origin: [
-    'https://kickback-ac72db97537b.herokuapp.com', // frontend hosted on Heroku
-    'http://localhost:3000'                        // local dev
+    'https://kickback-ac72db97537b.herokuapp.com'
+    // 'http://localhost:3000'
   ],
-  credentials: true,
+  credentials: true
 };
 app.use(cors(corsOptions));
-
 app.use(express.json());
 
-// ✅ API routes
+// ✅ API Routes
 app.use('/api/championships', require('./routes/championships'));
 app.use('/api/euro', require('./routes/euroStats'));
 app.use('/api/search', require('./routes/search'));
@@ -74,17 +73,20 @@ app.use('/api/nations', require('./routes/flagMap'));
 app.use('/api/euro', require('./routes/insights'));
 app.use('/api/euro', require('./routes/landscape'));
 
-// ✅ Serve frontend from dist folder (built by Vite)
+// ✅ Optional: Add any missing endpoints here
+// app.use('/api/euro', require('./routes/news'));
+
+// ✅ Serve Vite frontend
 const distPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(distPath));
 
-// ✅ Fallback for React Router (client-side routes)
+// ✅ Catch-all for client-side routing (React Router)
 app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api/')) return next(); // Let API routes through
+  if (req.path.startsWith('/api/')) return next(); // let API routes work
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
-// ✅ Start the server
+// ✅ Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
