@@ -25,8 +25,11 @@ const CountryProfiles = () => {
     region: 'US',
   });
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
-    axios.get('http://localhost:5001/api/nations/profiles')
+    // axios.get('http://localhost:5001/api/nations/profiles')
+    axios.get(`${API_BASE}/api/nations/profiles`)
       .then(res => {
         setCountries(res.data);
         setSelectedCountry(res.data[0]);

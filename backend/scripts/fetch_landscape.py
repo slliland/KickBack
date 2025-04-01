@@ -260,4 +260,6 @@ def get_country_matches(country_code):
     return jsonify(filtered_df.to_dict(orient='records'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)

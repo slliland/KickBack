@@ -93,10 +93,13 @@ const TeamTrends = () => {
     }
   }, [selectedTeams]);
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const fetchTrends = async (codes) => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5001/api/nations/trends', {
+      // const res = await axios.get('http://localhost:5001/api/nations/trends', {
+      const res = await axios.get(`${API_BASE}/api/nations/trends`, {
         params: { team_codes: codes.join(',') }
       });
       setTrendData(res.data);

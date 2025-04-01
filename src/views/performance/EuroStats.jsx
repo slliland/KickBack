@@ -9,11 +9,13 @@ import trophyIcon from '../../assets/icons/trophy.png';
 import '../../assets/scss/partials/widget/_euroStats.scss';
 
 ChartJS.register(ScatterController, LinearScale, PointElement, Tooltip, Title);
-
+const FLASK_API = import.meta.env.VITE_FLASK_API;
 // GeoJSON & API endpoints
 const GEO_URL = "https://raw.githubusercontent.com/leakyMirror/map-of-europe/master/GeoJSON/europe.geojson";
-const STATS_URL = "http://127.0.0.1:5000/api/euro/stats";
-const MATCHES_ENDPOINT = (code) => `http://127.0.0.1:5000/api/euro/matches/${code}`;
+// const STATS_URL = "http://127.0.0.1:5000/api/euro/stats";
+const STATS_URL = `${FLASK_API}/api/euro/stats`;
+// const MATCHES_ENDPOINT = (code) => `http://127.0.0.1:5000/api/euro/matches/${code}`;
+const MATCHES_ENDPOINT = (code) => `${FLASK_API}/api/euro/matches/${code}`;
 
 const Dashboard = () => {
   // State
