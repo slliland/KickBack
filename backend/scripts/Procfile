@@ -1,1 +1,1 @@
-web: python fetch_landscape.py
+web: gunicorn fetch_landscape:app
