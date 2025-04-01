@@ -29,7 +29,9 @@ A full-stack data visualization dashboard showcasing historical team performance
 - PostgreSQL (with `euro_db` and proper schema imported)
 - Google Maps API Key
 
-### Installation
+---
+
+## Local Installation
 
 ```bash
 git clone git@github.com:slliland/KickBack.git
@@ -38,15 +40,59 @@ npm install
 cd backend && npm install
 ```
 
-### Set up environment
+### Environment Setup
 
 Create a `.env` file in the `backend/` directory:
 
-```bash
+```env
 DATABASE_URL=postgresql://youruser:yourpass@localhost:5432/euro_db
 PORT=5001
 GOOGLE_MAPS_API_KEY=your_api_key_here
 ```
+
+---
+
+## Cloud Deployment
+
+### Backend (Heroku)
+
+1. **Provision a PostgreSQL database** via Heroku Add-ons.
+2. Set the environment variables:
+
+```bash
+heroku config:set DATABASE_URL=your_heroku_postgres_url
+heroku config:set GOOGLE_MAPS_API_KEY=your_api_key
+```
+
+3. Deploy the backend:
+
+```bash
+cd backend
+git init
+heroku git:remote -a your-heroku-app-name
+git add .
+git commit -m "Initial Heroku deploy"
+git push heroku main
+```
+
+Your Flask/Express API will be live at:
+
+```
+https://your-heroku-app-name.herokuapp.com/
+```
+
+---
+
+### Frontend (Heroku, Vercel or Netlify)
+
+1. Go to your frontend project root (`KickBack/`).
+2. Create a `.env.production` file:
+
+```env
+VITE_API_BASE_URL=https://your-heroku-app-name.herokuapp.com
+```
+
+3. Deploy via [Vercel](https://vercel.com) or [Netlify](https://netlify.com) using GitHub integration or CLI.
 
 ---
 
@@ -62,7 +108,7 @@ GOOGLE_MAPS_API_KEY=your_api_key_here
 - **Frontend**: React, Bootstrap, Chart.js, React Google Maps
 - **Backend**: Express, Node.js, PostgreSQL
 - **Map/Geo**: Google Maps API
-- **Charts**: chart.js via `react-chartjs-2`
+- **Charts**: Chart.js via `react-chartjs-2`
 
 ---
 
@@ -83,4 +129,4 @@ Built by Yujian Song, with love for football and data.
 
 ## License
 
-MIT License
+This project is licensed under the MIT License.
