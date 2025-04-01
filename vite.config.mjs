@@ -5,9 +5,11 @@ import path from 'path';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const API_URL = env.VITE_APP_BASE_NAME?.startsWith('/')
-    ? env.VITE_APP_BASE_NAME
-    : `/${env.VITE_APP_BASE_NAME || ''}/`;
+  // const API_URL = env.VITE_APP_BASE_NAME?.startsWith('/')
+  //   ? env.VITE_APP_BASE_NAME
+  //   : `/${env.VITE_APP_BASE_NAME || ''}/`;
+  const basePath = env.VITE_APP_BASE_NAME?.trim();
+  const API_URL = basePath ? `/${basePath}/` : '/';
 
   return {
     server: {
