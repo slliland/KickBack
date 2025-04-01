@@ -2,27 +2,12 @@ name: Fetch Euro 2028 News
 
 on:
   schedule:
-    - cron: '05 16 * * *'
+    - cron: '05 16 * * *'  # Runs daily at 16:05 UTC
   workflow_dispatch:
 
 jobs:
   fetch-news:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:14
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: songyujian2002
-          POSTGRES_DB: euro_db
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd="pg_isready"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
 
     steps:
     - name: Checkout repo
@@ -40,10 +25,8 @@ jobs:
 
     - name: Run news fetch script
       env:
-        PGHOST: localhost
-        PGPORT: 5432
-        PGDATABASE: euro_db
-        PGUSER: postgres
-        PGPASSWORD: songyujian2002
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        GOOGLE_CSE_ID: ${{ secrets.GOOGLE_CSE_ID }}
       run: |
         python backend/scripts/fetch_news.py

@@ -20,12 +20,16 @@ cx = os.getenv("GOOGLE_CSE_ID")
 conn = psycopg2.connect(os.environ["DATABASE_URL"], sslmode="require")
 cur = conn.cursor()
 
+from datetime import datetime, timezone
+
 def fetch_news_from_google_api():
     query = "Euro Cup 2028"
     url = f"https://www.googleapis.com/customsearch/v1?key={key}&cx={cx}&q={query}"
 
     res = requests.get(url)
     data = res.json()
+
+    fetched_time = datetime.now(timezone.utc)
 
     for item in data.get("items", [])[:5]:
         title = item.get("title")
@@ -34,8 +38,12 @@ def fetch_news_from_google_api():
         cur.execute("""
             INSERT INTO euro_news (title, link, fetched_at)
             VALUES (%s, %s, %s)
-            ON CONFLICT (link) DO NOTHING;
-        """, (title, link, datetime.utcnow()))
+            ON CONFLICT (link) DO UPDATE
+            SET 
+                title = EXCLUDED.title,
+                fetched_at = EXCLUDED.fetched_at;
+        """, (title, link, fetched_time))
+
 
     conn.commit()
     print("News inserted.")
