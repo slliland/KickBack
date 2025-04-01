@@ -4,10 +4,11 @@ import axios from 'axios';
 
 const TopChampions = () => {
   const [winners, setWinners] = useState([]);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     axios
-      .get('http://localhost:5001/api/championships/top-countries')
+      .get(`${API_BASE}/api/championships/top-countries`)
       .then((res) => setWinners(res.data))
       .catch((err) => console.error(err));
   }, []);

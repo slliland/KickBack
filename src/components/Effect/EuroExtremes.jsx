@@ -4,9 +4,10 @@ import axios from 'axios';
 
 const EuroExtremes = () => {
   const [data, setData] = useState(null);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/euro/extremes')
+    axios.get(`${API_BASE}/api/euro/extremes`)
       .then(res => setData(res.data))
       .catch(err => console.error(err));
   }, []);
