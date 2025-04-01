@@ -46,14 +46,24 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
-const path = require('path'); // ← make sure this is imported
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(cors());
+// ✅ Allow requests from both local dev and deployed frontend
+const corsOptions = {
+  origin: [
+    'https://kickback-ac72db97537b.herokuapp.com', // frontend hosted on Heroku
+    'http://localhost:3000'                        // local dev
+  ],
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
+// ✅ API routes
 app.use('/api/championships', require('./routes/championships'));
 app.use('/api/euro', require('./routes/euroStats'));
 app.use('/api/search', require('./routes/search'));
@@ -64,17 +74,17 @@ app.use('/api/nations', require('./routes/flagMap'));
 app.use('/api/euro', require('./routes/insights'));
 app.use('/api/euro', require('./routes/landscape'));
 
-// Serve frontend from /dist (Vite build output)
+// ✅ Serve frontend from dist folder (built by Vite)
 const distPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(distPath));
 
-// Only send index.html if the request didn't match a static file or API route
+// ✅ Fallback for React Router (client-side routes)
 app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api/')) return next(); // Skip API routes
+  if (req.path.startsWith('/api/')) return next(); // Let API routes through
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
-
+// ✅ Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
