@@ -129,7 +129,6 @@ const FlagMap = () => {
   const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    // axios.get('http://localhost:5001/api/nations/map')
     axios.get(`${API_BASE}/api/nations/map`)
       .then(res => {
         setLocations(res.data);

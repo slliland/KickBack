@@ -19,7 +19,6 @@ const Timeline = () => {
   useEffect(() => {
     const fetchTimeline = async () => {
       try {
-        // const res = await axios.get('http://localhost:5001/api/nations/timeline');
         const res = await axios.get(`${API_BASE}/api/nations/timeline`);
         setTimelineData(res.data.sort((a, b) => a.first_participation - b.first_participation));
       } catch (error) {

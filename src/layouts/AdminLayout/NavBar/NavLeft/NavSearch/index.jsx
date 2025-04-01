@@ -35,11 +35,13 @@ const NavSearch = () => {
     setResults(null);
   };
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const handleSearch = async () => {
     if (!query.trim()) return;
     try {
       const res = await fetch(
-        `http://localhost:5001/api/search?q=${encodeURIComponent(query.trim())}`
+        `${API_BASE}/api/search?q=${encodeURIComponent(query.trim())}`
       );
       if (!res.ok) throw new Error('Request failed');
       const data = await res.json();

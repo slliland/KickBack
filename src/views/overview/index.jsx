@@ -16,7 +16,6 @@ const DashDefault = () => {
   console.log(API_BASE); 
 
   useEffect(() => {
-    // axios.get('http://localhost:5001/api/euro/news')
     axios.get(`${API_BASE}/api/euro/news`)
       .then(res => setNewsItems(res.data))
       .catch(err => console.error('Error fetching news:', err));
@@ -27,7 +26,6 @@ const DashDefault = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const res = await axios.get('http://localhost:5001/api/championships/top-countries');
         const res = await axios.get(`${API_BASE}/api/championships/top-countries`);
         setTopCountries(res.data);
       } catch (err) {
