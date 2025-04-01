@@ -30,6 +30,9 @@ app.use('/api/nations', require('./routes/flagMap'));
 const insightsRouter = require('./routes/insights');
 app.use('/api/euro', insightsRouter);
 
+const landscapeRoutes = require('./routes/landscape');
+app.use('/api/euro', landscapeRoutes);
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

@@ -4,31 +4,24 @@ A full-stack data visualization dashboard showcasing historical team performance
 
 ---
 
-## 🌟 Features
+## Features
 
-- 🗺️ Interactive country profiles with map-based visualizations
-- 📊 Team performance trends over the years
-- 🔍 Dynamic search and filtering by region and EURO achievement
-- 📈 Line & bar charts (goals, wins, attendance, red cards, etc.)
-- ✅ Compare multiple teams with easy toggle controls
-- 💡 Responsive design & styled with EURO-themed colors
-
----
-
-## 🖼️ Screenshots
-
-<!-- 1. **Overview**
-![country-profile](./screenshots/country-profile.png)
-
-2. **Team Trends with Comparison**
-![team-trends](./screenshots/team-trends.png)
-
-3. **Interactive Map View**
-![map](./screenshots/map.png) -->
+- Interactive country profiles with map-based visualizations
+- Team performance trends over the years
+- Dynamic search and filtering by region and EURO achievement
+- Line & bar charts (goals, wins, attendance, red cards, etc.)
+- Compare multiple teams with easy toggle controls
+- Responsive design & styled with EURO-themed colors
 
 ---
 
-## 🚀 Getting Started
+## Screenshots
+
+![](./src/assets/images/grid_image_no_resize.jpg)
+
+---
+
+## Getting Started
 
 ### Prerequisites
 
@@ -57,14 +50,14 @@ GOOGLE_MAPS_API_KEY=your_api_key_here
 
 ---
 
-## 📚 Data Sources
+## Data Sources
 
 - EURO match data: extracted from official UEFA archives & public datasets
 - Country flags, coordinates, and metadata: manually curated
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React, Bootstrap, Chart.js, React Google Maps
 - **Backend**: Express, Node.js, PostgreSQL
@@ -82,12 +75,12 @@ GOOGLE_MAPS_API_KEY=your_api_key_here
 
 ---
 
-## 🙌 Credits
+## Credits
 
 Built by Yujian Song, with love for football and data.
 
 ---
 
-## 📄 License
+## License
 
 MIT License

@@ -171,7 +171,7 @@ const TeamTrends = () => {
 
       <div className="d-flex justify-content-between mb-2">
         <Button variant="outline-primary" onClick={handleSelectAll}>Select All</Button>
-        <Button variant="outline-secondary" onClick={handleClearAll}>Clear All</Button>
+        <Button variant="outline-secondary" onClick={handleClearAll} style={{ borderColor: '#ffffff', color: '#ffffff' }}>Clear All</Button>
       </div>
 
       <Accordion defaultActiveKey="0" alwaysOpen className="team-accordion mb-4">

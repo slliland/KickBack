@@ -114,24 +114,7 @@ const menuItems = {
           url: '/profile-page',
           classes: 'nav-item',
           icon: 'feather icon-sidebar'
-        },
-        {
-          id: 'disabled-menu',
-          title: 'Close Page',
-          type: 'item',
-          url: '#',
-          classes: 'nav-item close-page',
-          icon: 'feather icon-power',
-          onClick: () => {
-            // Ask for confirmation before closing
-            if (window.confirm("Are you sure you want to close this page?")) {
-              // Try to close the window. This will work only if the window was opened by script.
-              window.close();
-              // Fallback: redirect to an "empty" page.
-              window.location.href = "about:blank";
-            }
-          }
-        }            
+        }          
       ]
     }
   ]

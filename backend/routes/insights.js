@@ -27,7 +27,7 @@ router.get('/insights', (req, res) => {
       },
       {
         header: "Final Whistle",
-        text: "We've only scratched the surface of our EURO data expedition. Stay tuned as we dive deeper into team tactics, legendary players, and the unforgettable moments that make EURO a premier football spectacle!"
+        text: "I've only scratched the surface of our EURO data expedition. Stay tuned as I dive deeper into team tactics, legendary players, and the unforgettable moments that make EURO a premier football spectacle!"
       }
     ]
   };
