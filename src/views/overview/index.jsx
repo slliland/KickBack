@@ -13,6 +13,7 @@ import avatar3 from '../../assets/images/user/avatar-3.jpg';
 const DashDefault = () => {
   const [newsItems, setNewsItems] = useState([]);
   const API_BASE = import.meta.env.VITE_API_BASE_URL;
+  console.log(API_BASE); 
 
   useEffect(() => {
     // axios.get('http://localhost:5001/api/euro/news')
