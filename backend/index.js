@@ -65,10 +65,15 @@ app.use('/api/euro', require('./routes/insights'));
 app.use('/api/euro', require('./routes/landscape'));
 
 // Serve frontend from /dist (Vite build output)
-app.use(express.static(path.join(__dirname, '..', 'dist')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
+const distPath = path.join(__dirname, '..', 'dist');
+app.use(express.static(distPath));
+
+// Only send index.html if the request didn't match a static file or API route
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) return next(); // Skip API routes
+  res.sendFile(path.join(distPath, 'index.html'));
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
